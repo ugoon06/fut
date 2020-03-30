@@ -1,0 +1,50 @@
+# IDE & Publish Folder
+*.sublime-project
+*.sublime-workspace
+.sublime-grunt.cache
+.idea
+*.iml
+.vscode
+
+# Packages #
+# it's better to unpack these files and commit the raw source
+# git has its own built in compression methods
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+thumbs.db
+Thumbs.db
+
+# watch
+.sass-cache
+.publish
+.tmp
+/src/css/
+/src/html/
+
+# Node Modules
+bower_components
+node_modules
+npm-debug.log*
+package-lock.json
+
+# projects
+dist
+reports
+/src/img/sp_*.png
+/src/img/sp_*_*.png
+/src/scss/sprites/*.scss
+/storybook-static

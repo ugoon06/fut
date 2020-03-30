@@ -1,0 +1,37 @@
+{
+	'functions': true
+}
+
+${{spritesheet_info.name}}-origin: (
+  total-width: {{spritesheet.px.width}},
+  total-height: {{spritesheet.px.height}},
+  imageSrc: '{{spritesheet.escaped_image}}'
+);
+
+${{spritesheet_info.name}}-vars: (
+	{{#each sprites}}
+	'{{name}}': (
+		offset-x: {{px.offset_x}},
+		offset-y: {{px.offset_y}},
+		width: {{px.width}},
+		height: {{px.height}}
+	),
+	{{/each}}
+);
+
+{{#options.functions}}
+@mixin sp-{{spritesheet_info.name}}($image) {
+	{{!-- 변수 --}}
+	$image-origin: ${{spritesheet_info.name}}-origin;
+	$image-var: map-get(${{spritesheet_info.name}}-vars, $image);
+	$image-path: map-get($image-origin, 'imageSrc');
+
+	{{!-- 적용 --}}
+	width: map-get($image-var, 'width')/2;
+	height: map-get($image-var, 'height')/2;
+	background-image: url($image-path);
+	background-size: map-get($image-origin, 'total-width')/2 map-get($image-origin, 'total-height')/2;
+	background-position: map-get($image-var, 'offset-x')/2 map-get($image-var, 'offset-y')/2;
+	background-repeat: no-repeat;
+}
+{{/options.functions}}

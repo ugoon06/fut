@@ -1,0 +1,33 @@
+${{spriteName}}-origin: (
+  total-width: {{spriteWidth}}px,
+  total-height: {{spriteHeight}}px,
+	padding: {{padding.top}}px,
+  imageSrc: '{{{baseName}}}.svg'
+);
+
+${{spriteName}}-vars: (
+	{{#shapes}}
+	'{{name}}': (
+		offset-x: {{position.absolute.x}}px,
+		offset-y: {{position.absolute.y}}px,
+		width: {{width.inner}}px,
+		height: {{height.inner}}px
+	),
+	{{/shapes}}
+);
+
+@mixin sp-{{spriteName}} ($image) {
+	{{!-- 변수 --}}
+	$image-origin: ${{spriteName}}-origin;
+	$image-var: map-get(${{spriteName}}-vars, $image);
+	$image-path: map-get($image-origin, 'imageSrc');
+	$padding: map-get(${{spriteName}}-origin, 'padding');
+
+	{{!-- 적용 --}}
+	width: map-get($image-var, 'width');
+	height: map-get($image-var, 'height');
+	background-image: url($image-path);
+	background-size: map-get($image-origin, 'total-width') map-get($image-origin, 'total-height');
+	background-position: (map-get($image-var, 'offset-x') - $padding) (map-get($image-var, 'offset-y') - $padding);
+	background-repeat: no-repeat;
+}
